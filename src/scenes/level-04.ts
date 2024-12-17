@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 
-class Level02 extends Phaser.Scene {
+class Level04 extends Phaser.Scene {
     constructor() {
-        super('level-02');
+        super('level-04');
     };
 
     public preload() {
@@ -10,10 +10,10 @@ class Level02 extends Phaser.Scene {
     };
 
     public create() {
-        const text = this.add.text(100, 100, 'Go to Level 3');
+        const text = this.add.text(100, 100, 'Go to Level 5');
         text.setInteractive();
         text.on('pointerdown', () => {
-            this.scene.start('level-03');
+            this.scene.start('level-05');
         });
     }
 
@@ -22,4 +22,4 @@ class Level02 extends Phaser.Scene {
     };
 };
 
-export default Level02;
+export default Level04;
