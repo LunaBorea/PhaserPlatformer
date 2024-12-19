@@ -8,7 +8,7 @@ import Phaser from 'phaser';
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 800,
+    width: 1600,
     height: 600,
     scene: [Level01, Level02, Level03, Level04, Level05],
     physics: {
@@ -18,7 +18,8 @@ const config: Phaser.Types.Core.GameConfig = {
             debug: false
         }
     },
-    parent: 'body'
+    parent: 'body',
+    antialias: false
 };
 
 const game = new Phaser.Game(config);
