@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 let player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 let cursors: Phaser.Types.Input.Keyboard.CursorKeys;
 var platforms;
-
+let lastDirection: 'left' | 'right' = 'right';
 
 class Level01 extends Phaser.Scene {
     constructor() {
@@ -38,23 +38,22 @@ class Level01 extends Phaser.Scene {
         player.setCollideWorldBounds(true);
 
         this.anims.create({
-            key: 'left',
+            key: 'walk',
             frames: this.anims.generateFrameNumbers('dudeguy', { start: 0, end: 3 }),
             frameRate: 10,
             repeat: -1
         });
     
         this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'dudeguy', frame: 4 } ],
-            frameRate: 20
+            key: 'idle',
+            frames: [ { key: 'dudeguy', frame: 0 } ],
+            frameRate: 1
         });
-    
+
         this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('dudeguy', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
+            key: 'jump',
+            frames: [ { key: 'dudeguy', frame: 1 } ],
+            frameRate: 1
         });
 
         cursors = this.input.keyboard!.createCursorKeys();
@@ -63,30 +62,46 @@ class Level01 extends Phaser.Scene {
     }
 
     public update(time: number, delta: number): void {
+        const isAirborne = !(player.body.touching.down || player.body.blocked.down);
 
-        if (cursors.left.isDown)
-            {
-                player.setVelocityX(-160);
-        
-                player.anims.play('left', true);
+        if (cursors.left.isDown) {
+            player.setVelocityX(-160);
+
+            if (!isAirborne) {
+                player.setFlipX(false);
+                player.anims.play('walk', true);
             }
-            else if (cursors.right.isDown)
-            {
-                player.setVelocityX(160);
-        
-                player.anims.play('right', true);
+
+            lastDirection = 'left';
+        }
+        else if (cursors.right.isDown) {
+            player.setVelocityX(160);
+
+            if (!isAirborne) {
+                player.setFlipX(true);
+                player.anims.play('walk', true);
             }
-            else
-            {
-                player.setVelocityX(0);
-        
-                player.anims.play('turn');
+
+            lastDirection = 'right';
+        }
+        else {
+            player.setVelocityX(0);
+
+            if (!isAirborne) {
+                player.anims.play('idle');
+                player.setFlipX(lastDirection === 'right');
             }
-        
-            if (cursors.up.isDown && (player.body.touching.down || player.body.blocked.down)) // player.body.blocked.down temporary for testing purposes
-            {
-                player.setVelocityY(-400);
-            }
+        }
+
+        if (isAirborne) {
+            player.anims.play('jump', true);
+            player.setFlipX(lastDirection === 'right');
+        }
+    
+        if (cursors.up.isDown && !isAirborne) // 'player.body.blocked.down' so player doesnt fall through void
+        {
+            player.setVelocityY(-400);
+        }
     };
 
 };
