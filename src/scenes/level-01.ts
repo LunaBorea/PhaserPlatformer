@@ -20,7 +20,7 @@ class Level01 extends Phaser.Scene {
     public create() {
         this.add.image(800, 300, 'background');
 
-        const text = this.add.text(100, 100, 'Go to Level 2');
+        const text = this.add.text(100, 100, 'Level 1\nGo to Level 2');
         text.setInteractive();
         text.on('pointerdown', () => {
             this.scene.start('level-02');
@@ -29,9 +29,9 @@ class Level01 extends Phaser.Scene {
         // Spawns platforms
         platforms = this.physics.add.staticGroup();
         platforms.create(800, 564, 'ground');
-        /* platforms.create(1000, 450, 'platform');
+        platforms.create(1000, 450, 'platform');
         platforms.create(800, 350, 'platform');
-        platforms.create(600, 250, 'platform'); */
+        platforms.create(600, 250, 'platform');
 
         // Spawns player --> player settings
         player = this.physics.add.sprite(800, 490, 'dudeguy').setScale(2).refreshBody();  

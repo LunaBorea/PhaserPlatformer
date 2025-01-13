@@ -10,7 +10,7 @@ class Level03 extends Phaser.Scene {
     };
 
     public create() {
-        const text = this.add.text(100, 100, 'Go to Level 4');
+        const text = this.add.text(100, 100, 'Level 3\nGo to Level 4');
         text.setInteractive();
         text.on('pointerdown', () => {
             this.scene.start('level-04');
