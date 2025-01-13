@@ -14,6 +14,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    padding-bottom: 5rem;
 }
 
 #title-container {
@@ -28,6 +29,7 @@ h1 {
     letter-spacing: 1rem;
     font-size: 4rem;
     color: black;
+    line-height: 2rem;
 }
 #doof {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

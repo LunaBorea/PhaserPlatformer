@@ -28,7 +28,7 @@ class Level01 extends Phaser.Scene {
 
         // Spawns platforms
         platforms = this.physics.add.staticGroup();
-        platforms.create(800, 563, 'ground');
+        platforms.create(800, 564, 'ground');
         /* platforms.create(1000, 450, 'platform');
         platforms.create(800, 350, 'platform');
         platforms.create(600, 250, 'platform'); */
