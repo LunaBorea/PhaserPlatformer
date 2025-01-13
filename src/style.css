@@ -10,11 +10,42 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
+}
+
+#title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 1rem;
+    font-size: 4rem;
+    color: black;
+}
+#doof {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0;
+    color: rgb(82, 82, 82);
+}
+#ltr-spc {
+    letter-spacing: 1rem;
+}
+h3 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.25rem;
+    color: black;
 }
 
 canvas {
     width: 1600px;
     height: 600px;
+    outline: 8px solid black;
 }

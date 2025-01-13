@@ -11,8 +11,8 @@ class Level01 extends Phaser.Scene {
     };
 
     public preload() {
-        this.load.image('background', '../src/assets/hellbackground_400x300_edited.png')
-        this.load.image('ground', '../src/assets/ground_128x16.png')
+        this.load.image('background', '../src/assets/hellbackground_1600x600_edited.png')
+        this.load.image('ground', '../src/assets/ground_1600x100.png')
         this.load.image('platform', '../src/assets/platform_128x32.png')
         this.load.spritesheet('dudeguy', '../src/assets/dudeguy.png', { frameWidth: 21, frameHeight: 32 }); // Fix collision, frame too large
     };
@@ -28,13 +28,13 @@ class Level01 extends Phaser.Scene {
 
         // Spawns platforms
         platforms = this.physics.add.staticGroup();
-        platforms.create(800, 586, 'ground').setScale(7).refreshBody();
-        platforms.create(1000, 450, 'platform');
+        platforms.create(800, 563, 'ground');
+        /* platforms.create(1000, 450, 'platform');
         platforms.create(800, 350, 'platform');
-        platforms.create(600, 250, 'platform');
+        platforms.create(600, 250, 'platform'); */
 
         // Spawns player --> player settings
-        player = this.physics.add.sprite(800, 450, 'dudeguy').setScale(2).refreshBody();  
+        player = this.physics.add.sprite(800, 490, 'dudeguy').setScale(2).refreshBody();  
         player.setCollideWorldBounds(true);
 
         this.anims.create({
@@ -100,7 +100,7 @@ class Level01 extends Phaser.Scene {
     
         if (cursors.up.isDown && !isAirborne) // 'player.body.blocked.down' so player doesnt fall through void
         {
-            player.setVelocityY(-400);
+            player.setVelocityY(-450);
         }
     };
 
