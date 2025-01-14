@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     
     padding: 0;
@@ -49,5 +49,7 @@ h3 {
 canvas {
     width: 1600px;
     height: 600px;
-    outline: 8px solid black;
+    border: 12px solid black;
+    border-radius: 25px;
+    box-sizing: content-box;
 }
