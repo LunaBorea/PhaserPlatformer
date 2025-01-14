@@ -1,1 +1,1 @@
-Main branch contains the project, old contains the phaser beginner tutorial with slight changes.
+Main branch contains the project, 'tutorial' contains the phaser beginner tutorial with slight changes.
