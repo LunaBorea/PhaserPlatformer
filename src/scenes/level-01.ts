@@ -4,6 +4,8 @@ let player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 let cursors: Phaser.Types.Input.Keyboard.CursorKeys;
 let lastDirection: 'left' | 'right' = 'right';
 let lastGroundedTime = 0;
+let door: any;
+let doorBool = false;
 
 let platforms;
 let keys;
@@ -37,8 +39,9 @@ class Level01 extends Phaser.Scene {
         this.add.image(175, 75, 'life').setScale(3)
         this.add.image(275, 75, 'lifeEmpty').setScale(3)
 
-        this.add.image(1500, 472, 'doorLocked')
-        this.add.image(1500, 352, 'doorUnlocked')
+        door = this.physics.add.sprite(1500, 472, 'doorLocked')
+        door.body.immovable = true;
+        door.body.allowGravity = false;
 
         const textLevel = this.add.text(50, 150, 'Level 1\nGo to Level 2').setStroke('black', 2);
         textLevel.setInteractive();
@@ -115,7 +118,23 @@ class Level01 extends Phaser.Scene {
             key.disableBody(true, true);
             keysCollected++
             textKeys.setText('Keys collected: ' + keysCollected)
+            unlockDoor()
         }
+        function unlockDoor(){
+            if (keysCollected === 2) {
+                door.setTexture('doorUnlocked')
+                doorBool = true;
+            }
+        }
+
+        const advanceLevel = (player: any, door: any) => {
+            player;
+            door;
+            if (doorBool == true) {
+                this.scene.start('level-02');
+            }
+        }
+        this.physics.add.overlap(player, door, advanceLevel, undefined, this);
     }
 
     public update(time: number, delta: number): void {
